@@ -13,21 +13,23 @@ import com.example.apidemo.apidemo.Response.*;
 @RestController
 public class ProductController {
     public enum HttpMessage {
-        UPDATED ("Product updated."),
-        LIST ("Product List."),
-        NOT_FOUND ("Product not found.");
+        UPDATED("Product updated."),
+        LIST("Product List."),
+        NOT_FOUND("Product not found.");
 
-        private final String description; 
-        HttpMessage (String description) {
+        private final String description;
+
+        HttpMessage(String description) {
             this.description = description;
         }
+
         public String getDescription() {
             return this.description;
         }
     }
 
     private static final Logger logger = LogManager.getLogger(ProductController.class);
-   
+
     @Autowired
     private ProductService service;
 
@@ -36,6 +38,26 @@ public class ProductController {
         List<Product> productList = service.listAll();
         logger.info(productList.toString());
         return productList;
+    }
+
+    @GetMapping("/products/name/{name}")
+    public List<Product> findByName(@PathVariable String name) {
+        List<Product> productList = service.findByName(name);
+        logger.info("name: ================= " + name);
+        logger.info("list: ================= " + productList);
+        return productList;
+    }
+
+    @GetMapping("/products/last/{id}")
+    public ResponseEntity<Product> getLastId(@PathVariable Integer id) {
+        try {
+            Product product = service.getLastById(id);
+            logger.info("name: ================= " + id);
+            logger.info("list: ================= " + product);
+            return new ResponseEntity<Product>(product, HttpStatus.OK);
+        } catch (NoSuchElementException e) {
+            return new ResponseEntity<Product>(HttpStatus.NOT_FOUND);
+        }
     }
 
     @GetMapping("/products/{id}")
@@ -63,7 +85,7 @@ public class ProductController {
             service.save(product);
             Response response = new Response(httpStatus, httpMessage.description, product);
             return new ResponseEntity<Response>(response, httpStatus);
-  
+
         } catch (NoSuchElementException e) {
             HttpStatus httpStatus = HttpStatus.NOT_FOUND;
             Response response = new Response(httpStatus, e.toString(), new Product());

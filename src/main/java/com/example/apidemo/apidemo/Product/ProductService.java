@@ -13,7 +13,19 @@ public class ProductService {
  
     @Autowired
     private ProductRepository repo;
-     
+    
+    public List<Product> findLast() {
+        //return repo.findBy(example, queryFunction);
+        
+        return null;
+    }
+
+    public List<Product> findByName(String name) {
+        //return repo.findBy(example, queryFunction);
+        
+        return repo.findByName(name);
+    }
+
     public List<Product> listAll() {
         return repo.findAll();
     }
@@ -28,5 +40,10 @@ public class ProductService {
      
     public void delete(Integer id) {
         repo.deleteById(id);
+    }
+
+    public Product getLastById(Integer id) {
+        //return repo.findTopByOrderByIdDesc(id);
+        return null;
     }
 }
