@@ -1,0 +1,3 @@
+heroku create -a apidemospring
+heroku git:remote -a apidemospring
+git push heroku main
