@@ -15,7 +15,8 @@ public class ProductController {
     public enum HttpMessage {
         UPDATED("Product updated."),
         LIST("Product List."),
-        NOT_FOUND("Product not found.");
+        NOT_FOUND("Product not found."),
+        DELETED("Product deleted.");
 
         private final String description;
 
@@ -95,7 +96,7 @@ public class ProductController {
         try {
             Product existProduct = service.get(id);
             HttpStatus httpStatus = HttpStatus.OK;
-            HttpMessage httpMessage = HttpMessage.UPDATED;
+            HttpMessage httpMessage = HttpMessage.DELETED;
             Response response = new Response(httpStatus, httpMessage.description, existProduct);
             service.delete(id);
             return new ResponseEntity<Response>(response, httpStatus);

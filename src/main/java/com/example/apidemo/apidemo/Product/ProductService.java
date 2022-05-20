@@ -1,9 +1,7 @@
 package com.example.apidemo.apidemo.Product;
 
 import java.util.List;
- 
 import javax.transaction.Transactional;
- 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
  
@@ -14,15 +12,7 @@ public class ProductService {
     @Autowired
     private ProductRepository repo;
     
-    public List<Product> findLast() {
-        //return repo.findBy(example, queryFunction);
-        
-        return null;
-    }
-
     public List<Product> findByName(String name) {
-        //return repo.findBy(example, queryFunction);
-        
         return repo.findByName(name);
     }
 
