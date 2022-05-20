@@ -1,13 +1,9 @@
 package com.example.apidemo.apidemo.Product;
 
-import java.time.LocalDateTime;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
-import org.hibernate.annotations.CreationTimestamp;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -29,5 +25,9 @@ public class Product {
     public Integer getId() {
         return id;
     }
-
+/*
+    public Float getDoublePrice(){
+        return this.price * 2;
+    }
+*/
 }

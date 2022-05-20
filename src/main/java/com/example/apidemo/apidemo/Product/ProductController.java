@@ -43,16 +43,13 @@ public class ProductController {
     @GetMapping("/products/name/{name}")
     public List<Product> findByName(@PathVariable String name) {
         List<Product> productList = service.findByName(name);
-        logger.info("name: ================= " + name);
-        logger.info("list: ================= " + productList);
         return productList;
     }
 
-    @GetMapping("/products/last/{id}")
-    public ResponseEntity<Product> getLastId(@PathVariable Integer id) {
+    @GetMapping("/products/lastid")
+    public ResponseEntity<Product> getLastId() {
         try {
-            Product product = service.getLastById(id);
-            logger.info("name: ================= " + id);
+            Product product = service.getLastById();
             logger.info("list: ================= " + product);
             return new ResponseEntity<Product>(product, HttpStatus.OK);
         } catch (NoSuchElementException e) {

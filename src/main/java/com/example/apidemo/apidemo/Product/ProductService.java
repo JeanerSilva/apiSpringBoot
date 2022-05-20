@@ -42,8 +42,7 @@ public class ProductService {
         repo.deleteById(id);
     }
 
-    public Product getLastById(Integer id) {
-        //return repo.findTopByOrderByIdDesc(id);
-        return null;
+    public Product getLastById() {
+       return repo.findTopByOrderByIdDesc();
     }
 }

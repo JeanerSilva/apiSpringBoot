@@ -11,7 +11,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -35,20 +34,21 @@ class ApidemoApplicationTests {
     }
 
 
+
+	//teste de integraçao
 	@Test
-	void case1() throws Exception {
-		Integer id = 4;
+	void case2() throws Exception {
 		String productName = "iPad novo";
 		Float price = (float) 888.0;
 	
-		Product productInfo = new Product(id, productName, price);
+		Product productInfo = new Product(null, productName, price);
 
 		mockMvc.perform(post("/products")
 		.contentType("application/json")
 		.content(objectMapper.writeValueAsString(productInfo)))
 		.andExpect(status().isOk());
         
-		Product productReturn = service.get(productInfo.getId());
+		Product productReturn = service.getLastById();
 
         assertThat(productReturn.getName()).isEqualTo(productName);
         Assertions.assertEquals(productReturn.getName(), productName);
