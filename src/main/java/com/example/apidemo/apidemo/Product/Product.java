@@ -7,8 +7,10 @@ import javax.persistence.Id;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
  
 @Entity
+@ToString
 public class Product {
     @Setter private Integer id;
     @Getter @Setter private String name;
@@ -19,28 +21,4 @@ public class Product {
     public Integer getId() {
         return id;
     }
-
-    /*
-    public void setId(Integer id) {
-        this.id = id;
-    }
- 
-
-    public String getName() {
-        return this.name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
- 
-    public Float getPrice() {
-        return this.price;
-    }
-
-    public void setPrice(Float price) {
-        this.price = price;
-    }
- 
-*/
 }
